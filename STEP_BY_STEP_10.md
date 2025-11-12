@@ -744,7 +744,7 @@ function App() {
       <div className="container">
         <div className="card">
           <h2>환영합니다!</h2>
-          <p>1주차 실습을 시작합니다.</p>
+          <p>10주차 실습을 시작합니다.</p>
         </div>
       </div>
     </div>
