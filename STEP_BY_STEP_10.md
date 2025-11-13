@@ -180,7 +180,7 @@ main().catch((error) => {
 
 **터미널 1번** (계속 실행 유지):
 ```bash
-npx hardhat node --port 18545
+npx hardhat node --port 8545
 ```
 
 출력 예시:
