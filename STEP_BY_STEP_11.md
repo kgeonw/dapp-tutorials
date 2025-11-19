@@ -13,7 +13,7 @@
 
 ---
 
-## 학습 개요 🎯
+## 학습 개요
 
 ### Week 2에서 배울 내용
 
@@ -284,9 +284,9 @@ const tx = await contract.mint(address, tokenURI); // 작동
 
 ---
 
-## 6. NFT 민팅 기능 구현 (50분) ⭐⭐⭐
+## 6. NFT 민팅 기능 구현
 
-### 학습 목표 🎯
+### 학습 목표
 
 이 단계를 완료하면:
 - 스마트 컨트랙트의 쓰기 함수를 호출할 수 있습니다
@@ -323,9 +323,9 @@ await tx.wait(); // 블록에 포함될 때까지 대기
 ```
 
 **왜 가스비가 필요한가?**
-1. 💰 **네트워크 유지**: 검증자(Validator)에게 보상
-2. 🛡️ **스팸 방지**: 무분별한 트랜잭션 방지
-3. ⚖️ **자원 할당**: 제한된 블록 공간 효율적 사용
+1. **네트워크 유지**: 검증자(Validator)에게 보상
+2. **스팸 방지**: 무분별한 트랜잭션 방지
+3. **자원 할당**: 제한된 블록 공간 효율적 사용
 
 #### 우리 컨트랙트의 mint 함수
 
@@ -341,8 +341,8 @@ function mint(address to, string memory uri) public onlyOwner returns (uint256) 
 
 **중요한 점:**
 - ⚠️ `onlyOwner`: 컨트랙트 소유자만 호출 가능
-- 📝 파라미터 2개: `address to`, `string uri`
-- 🎫 반환값: `uint256 tokenId` (하지만 프론트엔드에서는 이벤트로 확인)
+- 파라미터 2개: `address to`, `string uri`
+- 반환값: `uint256 tokenId` (하지만 프론트엔드에서는 이벤트로 확인)
 
 ### 실습: MintNFT 컴포넌트 생성 🛠️
 
@@ -509,13 +509,13 @@ const mintNFT = async () => {
     const provider = new ethers.BrowserProvider(window.ethereum);
     const signer = await provider.getSigner();
 
-    console.log('🔐 Signer 주소:', await signer.getAddress());
+    console.log('Signer 주소:', await signer.getAddress());
 
     // 2단계: Contract 인스턴스 생성 (Signer와 함께)
     const contract = new ethers.Contract(
       CONTRACT_ADDRESS,
       CONTRACT_ABI,
-      signer // ⭐ Signer 사용!
+      signer // Signer 사용!
     );
 
     // 3단계: 가스 추정 (선택사항, 하지만 유용함)
@@ -524,31 +524,31 @@ const mintNFT = async () => {
         recipientAddress,
         tokenURI
       );
-      console.log('⛽ 예상 가스:', gasEstimate.toString());
+      console.log('예상 가스:', gasEstimate.toString());
     } catch (gasError) {
       console.warn('가스 추정 실패:', gasError);
       // onlyOwner 체크
       if (gasError.message.includes('OwnableUnauthorizedAccount')) {
-        setError('⚠️ 컨트랙트 소유자만 민팅할 수 있습니다.');
+        setError('컨트랙트 소유자만 민팅할 수 있습니다.');
         setIsMinting(false);
         return;
       }
     }
 
     // 4단계: mint() 함수 호출 및 트랜잭션 전송
-    console.log('📤 트랜잭션 전송 중...');
+    console.log('트랜잭션 전송 중...');
     const tx = await contract.mint(recipientAddress, tokenURI);
 
-    console.log('✅ 트랜잭션 전송 완료!');
-    console.log('📝 TX Hash:', tx.hash);
+    console.log('트랜잭션 전송 완료!');
+    console.log('TX Hash:', tx.hash);
     setTxHash(tx.hash);
 
     // 5단계: 트랜잭션 확인 대기 (7에서 자세히)
-    console.log('⏳ 블록 확인 대기 중...');
+    console.log('블록 확인 대기 중...');
     const receipt = await tx.wait();
 
-    console.log('🎉 트랜잭션 확인 완료!');
-    console.log('📦 블록 번호:', receipt.blockNumber);
+    console.log('트랜잭션 확인 완료!');
+    console.log('블록 번호:', receipt.blockNumber);
 
     // 이벤트 파싱 (섹션 7에서 추가할 예정)
     // TODO: Transfer 이벤트에서 tokenId 추출
@@ -565,7 +565,7 @@ const mintNFT = async () => {
     if (err.code === 'ACTION_REJECTED') {
       setError('사용자가 트랜잭션을 거부했습니다.');
     } else if (err.message.includes('OwnableUnauthorizedAccount')) {
-      setError('⚠️ 컨트랙트 소유자만 NFT를 민팅할 수 있습니다.');
+      setError('컨트랙트 소유자만 NFT를 민팅할 수 있습니다.');
     } else {
       setError(err.message || '민팅에 실패했습니다.');
     }
@@ -699,7 +699,7 @@ npm start
 
 ## 7. 트랜잭션 처리 및 이벤트
 
-### 학습 목표 🎯
+### 학습 목표
 
 이 단계를 완료하면:
 - 트랜잭션 receipt를 이해하고 활용할 수 있습니다
@@ -707,7 +707,7 @@ npm start
 - Transfer 이벤트에서 tokenId를 추출할 수 있습니다
 - 사용자에게 민팅 결과를 표시할 수 있습니다
 
-### 개념 설명 💡
+### 개념 설명
 
 #### Transaction Receipt란?
 
@@ -738,7 +738,7 @@ event Transfer(address indexed from, address indexed to, uint256 indexed tokenId
 // mint() 실행 시 자동으로 발생
 function mint(address to, string memory uri) public {
     uint256 tokenId = _nextTokenId++;
-    _safeMint(to, tokenId); // 👈 여기서 Transfer 이벤트 발생!
+    _safeMint(to, tokenId); // 여기서 Transfer 이벤트 발생!
     _setTokenURI(tokenId, uri);
 }
 ```
@@ -760,7 +760,7 @@ event Transfer(address indexed from, address indexed to, uint256 indexed tokenId
 // tokenId: 0, 1, 2, ... (새로 생성된 NFT ID)
 ```
 
-### 실습: 이벤트 파싱 구현 🛠️
+### 실습: 이벤트 파싱 구현
 
 #### 7-1. MintNFT.jsx 수정
 
@@ -915,7 +915,7 @@ MetaMask 팝업 → 사용자 승인
 
 ## 8. NFT 갤러리 구현
 
-### 학습 목표 🎯
+### 학습 목표
 
 이 단계를 완료하면:
 - 사용자가 소유한 모든 NFT를 조회할 수 있습니다
@@ -923,7 +923,7 @@ MetaMask 팝업 → 사용자 승인
 - NFT 메타데이터를 표시할 수 있습니다
 - OpenSea에서 NFT를 확인할 수 있습니다
 
-### 개념 설명 💡
+### 개념 설명
 
 #### ERC721Enumerable vs 커스텀 헬퍼 함수
 
@@ -980,7 +980,7 @@ const tokenIds = await contract.tokensOfOwner(account);
 - 커스텀 방식: ~0.5초
 ```
 
-### 실습: MyNFTs 컴포넌트 생성 🛠️
+### 실습: MyNFTs 컴포넌트 생성
 
 #### 8-1. MyNFTs.jsx 파일 생성
 
@@ -1033,14 +1033,14 @@ function MyNFTs({ account, refreshTrigger }) {
       const contract = new ethers.Contract(
         CONTRACT_ADDRESS,
         CONTRACT_ABI,
-        provider // ⭐ Provider만으로 충분 (READ 작업)
+        provider // Provider만으로 충분 (READ 작업)
       );
 
       // tokensOfOwner() 함수 호출
       // 한 번에 모든 tokenId 가져옴!
       const tokenIds = await contract.tokensOfOwner(account);
 
-      console.log('🎫 내 NFT 토큰 IDs:', tokenIds);
+      console.log('내 NFT 토큰 IDs:', tokenIds);
 
       // 각 토큰의 URI 가져오기 (병렬 처리)
       const tokensWithURI = await Promise.all(
@@ -1155,7 +1155,7 @@ function MyNFTs({ account, refreshTrigger }) {
           </div>
 
           <button onClick={fetchMyNFTs} style={{ marginTop: '20px' }}>
-            🔄 새로고침
+            새로고침
           </button>
         </div>
       )}
@@ -1243,14 +1243,14 @@ import MyNFTs from './components/MyNFTs';
 **새 NFT 민팅 후:**
 1. "내 주소로" 클릭
 2. "샘플 URI" 클릭
-3. "🎫 NFT 민팅하기" 클릭
+3. "NFT 민팅하기" 클릭
 4. MetaMask에서 확인
 
 **자동 새로고침 확인:**
 - 민팅 성공 후 자동으로 "내 NFT 컬렉션"에 새 NFT 추가됨
 - totalSupply도 자동으로 증가
 
-### 병렬 처리 vs 순차 처리 💡
+### 병렬 처리 vs 순차 처리
 
 #### 순차 처리 (느림)
 
@@ -1263,7 +1263,7 @@ for (const tokenId of tokenIds) {
 // 10개 NFT: 약 3-5초
 ```
 
-#### 병렬 처리 (빠름) ✅
+#### 병렬 처리 (빠름)
 
 ```javascript
 const tokensWithURI = await Promise.all(
@@ -1357,7 +1357,7 @@ Week 2의 모든 기능이 정상 작동하는지 확인하세요:
 
 ---
 
-## 문제 해결 🔧
+## 문제 해결
 
 ### 자주 발생하는 에러 및 해결방법
 
