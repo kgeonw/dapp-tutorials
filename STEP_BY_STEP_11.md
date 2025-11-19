@@ -1,4 +1,4 @@
-# Week 2: NFT 민팅 DApp - 단계별 실습 가이드
+# 11주차 단계별 실습 가이드
 
 ## 목차
 
@@ -15,9 +15,9 @@
 
 ## 학습 개요
 
-### Week 2에서 배울 내용
+### 11주차에서 배울 내용
 
-Week 1에서는 블록체인에서 **데이터를 읽는(READ)** 방법을 배웠습니다. Week 2에서는 블록체인에 **데이터를 쓰는(WRITE)** 방법을 학습합니다.
+10주차에서는 블록체인에서 **데이터를 읽는(READ)** 방법을 배웠습니다. 11주차에서는 블록체인에 **데이터를 쓰는(WRITE)** 방법을 학습합니다.
 
 **핵심 개념:**
 - **Signer**: 트랜잭션을 서명하는 주체
@@ -45,10 +45,10 @@ ls -la frontend/src/components/
 ```
 
 **확인 사항:**
-- `ConnectWallet.jsx` ✅ (Week 1에서 생성)
-- `TotalSupply.jsx` ✅ (Week 1에서 생성)
-- `MintNFT.jsx` ❓ (Week 2에서 생성 필요)
-- `MyNFTs.jsx` ❓ (Week 2에서 생성 필요)
+- `ConnectWallet.jsx` ✅ (10주차에서 생성)
+- `TotalSupply.jsx` ✅ (10주차에서 생성)
+- `MintNFT.jsx` ❓ (11주차에서 생성 필요)
+- `MyNFTs.jsx` ❓ (11주차에서 생성 필요)
 
 ### 0-2. package.json 스크립트 추가
 
@@ -1291,7 +1291,7 @@ const tokensWithURI = await Promise.all(
 
 ### 기능 테스트
 
-Week 2의 모든 기능이 정상 작동하는지 확인하세요:
+11주차의 모든 기능이 정상 작동하는지 확인하세요:
 
 **환경 설정:**
 - [ ] Hardhat 로컬 노드 실행 중
@@ -1301,12 +1301,12 @@ Week 2의 모든 기능이 정상 작동하는지 확인하세요:
 - [ ] MetaMask 네트워크 설정 (Localhost 8545)
 - [ ] 테스트 계정 import
 
-**기본 기능 (Week 1):**
+**기본 기능 (10주차):**
 - [ ] MetaMask 지갑 연결
 - [ ] 계정 주소 표시
 - [ ] totalSupply 읽기
 
-**민팅 기능 (Week 2):**
+**민팅 기능 (11주차):**
 - [ ] MintNFT.jsx 파일 존재
 - [ ] "내 주소로" 버튼 작동
 - [ ] "샘플 URI" 버튼 작동
@@ -1438,7 +1438,7 @@ REACT_APP_NETWORK_NAME=localhost
 
 ### 축하합니다!
 
-Week 2를 완료했습니다! 이제 여러분은:
+11주차를 완료했습니다! 이제 여러분은:
 - ✅ Provider와 Signer의 차이를 이해합니다
 - ✅ 블록체인에 데이터를 쓸 수 있습니다
 - ✅ NFT를 민팅할 수 있습니다
