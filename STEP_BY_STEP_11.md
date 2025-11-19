@@ -208,7 +208,7 @@ REACT_APP_NETWORK_NAME=localhost
 - [ ] MetaMask에 Hardhat Account #0 import됨
 - [ ] MetaMask에서 Localhost 8545 네트워크 선택됨
 
-모든 항목이 체크되면 다음 섹션으로 진행하세요! 👇
+모든 항목이 체크되면 다음 섹션으로 진행하세요!
 
 ---
 
